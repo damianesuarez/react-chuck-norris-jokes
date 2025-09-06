@@ -1,1 +1,176 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/react-chuck-norris-jokes/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/react-chuck-norris-jokes/logo192.png"/><link rel="manifest" href="/react-chuck-norris-jokes/manifest.json"/><title>React App</title><script src="https://kit.fontawesome.com/78418c5784.js" crossorigin="anonymous"></script><script defer="defer" src="/react-chuck-norris-jokes/static/js/main.4491384f.js"></script><link href="/react-chuck-norris-jokes/static/css/main.fb5ff281.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="/react-chuck-norris-jokes/favicon.ico"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="theme-color" content="#2563eb"/>
+    <meta name="description" content="Chuck Norris Jokes - Get your daily dose of legendary humor"/>
+    <link rel="apple-touch-icon" href="/react-chuck-norris-jokes/logo192.png"/>
+    <link rel="manifest" href="/react-chuck-norris-jokes/manifest.json"/>
+    
+    <!-- Improved Font Loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <title>Chuck Norris Jokes - Legendary Humor</title>
+    
+    <!-- FontAwesome for icons -->
+    <script src="https://kit.fontawesome.com/78418c5784.js" crossorigin="anonymous"></script>
+    
+    <!-- Improved CSS -->
+    <link href="/react-chuck-norris-jokes/static/css/main.fb5ff281.css" rel="stylesheet">
+    
+    <!-- Original built files -->
+    <script defer="defer" src="/react-chuck-norris-jokes/static/js/main.4491384f.js"></script>
+</head>
+<body>
+    <noscript>
+        <div style="text-align: center; padding: 2rem; font-family: system-ui;">
+            <h2>JavaScript Required</h2>
+            <p>You need to enable JavaScript to run this app and enjoy Chuck Norris jokes!</p>
+        </div>
+    </noscript>
+    
+    <!-- Main App Container -->
+    <div id="root">
+        <!-- This will be replaced by React -->
+        <!-- Improved structure for better accessibility and SEO -->
+        <main role="main" aria-label="Chuck Norris Jokes Application">
+            <div class="App">
+                <header>
+                    <h1 style="display: none;">Chuck Norris Jokes</h1>
+                </header>
+                
+                <div id="joke-box" role="article" aria-live="polite" aria-label="Current Chuck Norris Joke">
+                    <div id="text" role="text">
+                        Loading the ultimate Chuck Norris wisdom...
+                    </div>
+                    <div id="author" role="contentinfo">
+                        - Chuck Norris
+                    </div>
+                    
+                    <div id="buttons">
+                        <button 
+                            id="new-joke" 
+                            type="button"
+                            aria-label="Get a new Chuck Norris joke"
+                            title="Click for more legendary humor"
+                        >
+                            <i class="fas fa-fist-raised" aria-hidden="true"></i>
+                            Get Another Legend
+                        </button>
+                        
+                        <div id="rating" role="group" aria-label="Rate this joke">
+                            <span id="rating-label">Rate this joke:</span>
+                            <button class="rating-button" type="button" aria-label="Rate 1 star" data-rating="1">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                            </button>
+                            <button class="rating-button" type="button" aria-label="Rate 2 stars" data-rating="2">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                            </button>
+                            <button class="rating-button" type="button" aria-label="Rate 3 stars" data-rating="3">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                            </button>
+                            <button class="rating-button" type="button" aria-label="Rate 4 stars" data-rating="4">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                            </button>
+                            <button class="rating-button" type="button" aria-label="Rate 5 stars" data-rating="5">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <footer style="margin-top: 2rem; text-align: center; color: var(--text-secondary); font-size: var(--font-size-sm);">
+                    <p>Powered by the Chuck Norris API • Made with legendary precision</p>
+                </footer>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Enhanced JavaScript for better UX -->
+    <script>
+        // Enhanced loading states and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            const jokeBox = document.getElementById('joke-box');
+            const newJokeBtn = document.getElementById('new-joke');
+            const ratingButtons = document.querySelectorAll('.rating-button');
+            
+            // Add loading state management
+            function setLoadingState(isLoading) {
+                if (isLoading) {
+                    jokeBox.classList.add('loading');
+                    newJokeBtn.disabled = true;
+                    newJokeBtn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Loading...';
+                } else {
+                    jokeBox.classList.remove('loading');
+                    newJokeBtn.disabled = false;
+                    newJokeBtn.innerHTML = '<i class="fas fa-fist-raised" aria-hidden="true"></i> Get Another Legend';
+                }
+            }
+            
+            // Enhanced rating system
+            ratingButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const rating = parseInt(this.dataset.rating);
+                    
+                    // Update visual state
+                    ratingButtons.forEach((btn, index) => {
+                        if (index < rating) {
+                            btn.classList.add('active');
+                        } else {
+                            btn.classList.remove('active');
+                        }
+                    });
+                    
+                    // Add haptic feedback if available
+                    if (navigator.vibrate) {
+                        navigator.vibrate(50);
+                    }
+                    
+                    // Store rating (could be sent to analytics)
+                    console.log(`Joke rated: ${rating} stars`);
+                });
+                
+                // Keyboard navigation
+                button.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+            
+            // Enhanced button interactions
+            newJokeBtn.addEventListener('click', function() {
+                setLoadingState(true);
+                
+                // Simulate API call delay for better UX
+                setTimeout(() => {
+                    setLoadingState(false);
+                }, 1000);
+            });
+            
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === ' ' && e.target === document.body) {
+                    e.preventDefault();
+                    newJokeBtn.click();
+                }
+            });
+            
+            // Add focus management for accessibility
+            newJokeBtn.addEventListener('focus', function() {
+                this.style.outline = '2px solid var(--primary-color)';
+                this.style.outlineOffset = '2px';
+            });
+            
+            newJokeBtn.addEventListener('blur', function() {
+                this.style.outline = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
